@@ -47,13 +47,13 @@ Promise.all([
     //start to create and layer map and tiles
     let plateLayer = L.geoJSON(plateData);
 
-    let street = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    });
-
     let satellite = L.tileLayer('https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryTopo/MapServer/tile/{z}/{y}/{x}', {
         maxZoom: 20,
         attribution: 'Tiles from the <a href="https://usgs.gov/">U.S. Geological Survey</a>'
+    });
+
+    let street = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     });
 
     let topo = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
@@ -62,8 +62,8 @@ Promise.all([
 
 
     let baseMaps = {
-        "Street Map": street,
         "Satellite": satellite,
+        "Street Map": street,
         "Topographic Map": topo
     };
 
@@ -73,8 +73,8 @@ Promise.all([
     };
 
     let myMap = L.map("map", {
-        center: [30.00, -100.00],
-        zoom: 3,
+        center: [40.00, -100.00],
+        zoom: 5,
         layers: [markerGroup,satellite]
     });
 
