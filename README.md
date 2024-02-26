@@ -9,7 +9,7 @@ The USGS is interested in building a new set of tools that will allow them to vi
 The instructions for this activity are broken into two parts:
 
 *   Part 1: Create the Earthquake Visualization
-*   Part 2: Gather and Plot More Data (Optional with no extra points earning)
+*   Part 2: Gather and Plot More Data (_Optional_)
 
 ### **Part 1: Create the Earthquake Visualization**
 
