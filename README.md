@@ -1,3 +1,7 @@
+You can view the live site [here](https://jhyooz.github.io/leaflet-challenge/). The USGS GeoJSON data updates every 5 minutes so when the site is visited it will display the most recent and up-to-date data.
+
+---
+
 ### **Background**
 
 The United States Geological Survey, or USGS for short, is responsible for providing scientific data about natural hazards, the health of our ecosystems and environment, and the impacts of climate and land-use change. Their scientists develop new methods and tools to supply timely, relevant, and useful information about the Earth and its processes.
