@@ -26,7 +26,7 @@ Promise.all([
             let markerSize = feature.properties.mag * 5;
             let popupContent = `
             <b>Magnitude:</b> ${feature.properties.mag}<br>
-            <b>Time:</b> ${new Date(feature.properties.time).toLocaleString()}
+            <b>Time:</b> ${new Date(feature.properties.time).toLocaleString()}<br>
             <b>Place:</b> ${feature.properties.place}<br>
             <b>Depth:</b> ${feature.geometry.coordinates[2]}<br>`;
             let marker = L.circleMarker(latlng, {
