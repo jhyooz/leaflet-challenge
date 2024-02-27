@@ -16,8 +16,6 @@ Promise.all([
     d3.json(url),
     d3.json(urlplate)
 ]).then(function([earthquakeData, plateData]) {
-    // console.log(earthquakeData);
-    // console.log(plateData);
 
     //Add markers and their popups
     let markerGroup = L.geoJSON(earthquakeData, {
@@ -26,7 +24,7 @@ Promise.all([
             let markerSize = feature.properties.mag * 5;
             let popupContent = `
             <b>Magnitude:</b> ${feature.properties.mag}<br>
-            <b>Time:</b> ${new Date(feature.properties.time).toLocaleString()}<br>
+            <b>Time:</b> ${new Date(feature.properties.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })}<br>
             <b>Place:</b> ${feature.properties.place}<br>
             <b>Depth:</b> ${feature.geometry.coordinates[2]}<br>`;
             let marker = L.circleMarker(latlng, {
