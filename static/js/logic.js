@@ -9,37 +9,35 @@ function getcolor(depth) {
     if (depth > 49) return '#2c7c56';
     if (depth > 29) return '#144163';
     if (depth > 9) return '#302769';
-    else return 'black';
+    else return '#000000';
 }
 //plate and earthquake data
 Promise.all([
     d3.json(url),
     d3.json(urlplate)
 ]).then(function([earthquakeData, plateData]) {
-    console.log(earthquakeData);
-    console.log(plateData);
+    // console.log(earthquakeData);
+    // console.log(plateData);
 
-    //design markers and popups for markers
+    //Add markers and their popups
     let markerGroup = L.geoJSON(earthquakeData, {
         pointToLayer: function(feature, latlng) {
+            let markerColor = feature.geometry.coordinates[2]; //to get the depth
             let markerSize = feature.properties.mag * 5;
-            let markercolor = feature.geometry.coordinates[2]; //to get the depth, is item 3
             let popupContent = `
             <b>Magnitude:</b> ${feature.properties.mag}<br>
             <b>Time:</b> ${new Date(feature.properties.time).toLocaleString()}
             <b>Place:</b> ${feature.properties.place}<br>
-            <b>Depth:</b> ${feature.geometry.coordinates[2]}<br>
-
-        `;
+            <b>Depth:</b> ${feature.geometry.coordinates[2]}<br>`;
             let marker = L.circleMarker(latlng, {
                 radius: markerSize,
-                fillColor: getcolor(markercolor),
-                color: 'black',
-                weight: 2,
+                fillColor: getcolor(markerColor),
+                color: '#000000',
+                weight: 1,
                 opacity: 0.7,
-                fillOpacity: 1
+                fillOpacity: 0.5,
+                stroke: true,
             }).bindPopup(popupContent);
-
             return marker;
         }
     });
@@ -75,12 +73,12 @@ Promise.all([
     let myMap = L.map("map", {
         center: [40.00, -100.00],
         zoom: 5,
-        layers: [markerGroup,satellite]
+        layers: [markerGroup, satellite]
     });
 
     //add controls to the map
     L.control.layers(baseMaps, overlayMaps, {
-        collapsed: false
+        collapsed: true
     }).addTo(myMap);
 
     //color displays for the legend
@@ -90,11 +88,13 @@ Promise.all([
         '#2c7c56': '50 - 69',
         '#144163': '30 - 49',
         '#302769': '10 - 29',
-        'black': '-10 - 10'
+        '#000000': '-10 - 10'
     };
 
-    //add legend to the map
-    let legend = L.control({ position: 'bottomright' });
+    //add legend to map
+    let legend = L.control({
+        position: 'bottomright'
+    });
     legend.onAdd = function(map) {
         let div = L.DomUtil.create('div', 'info legend');
         let labels = [];
