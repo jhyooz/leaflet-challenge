@@ -1,6 +1,6 @@
 //urls for data
 let url = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson'
-let urlplate = 'static/js/PB2002_boundaries.json';
+let urlplate = 'PB2002_boundaries.json';
 
 //set color for depth
 function getcolor(depth) {
